@@ -14,7 +14,7 @@
     state: latest
 
 - name: Load Master Data
-  ansible.builtin.shell: mongosh --host MONGODB-SERVER-IPADDRESS </app/db/master-data.js
+  ansible.builtin.shell: mongosh --host mongodb-dev.mydevops.shop </app/db/master-data.js
 
 - name: Run systemd_setup
   ansible.builtin.include_role:
