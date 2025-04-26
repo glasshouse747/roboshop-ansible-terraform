@@ -19,5 +19,5 @@
 - name: Run systemd_setup
   ansible.builtin.include_role:
     name: common
-    task_from: systemd_setup
+    tasks_from: systemd_setup
 
