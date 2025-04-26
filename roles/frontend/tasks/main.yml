@@ -1,7 +1,15 @@
 - name: Disable and Enable Nginx
-  ansible.builtin.dnf:
+  ansible.builtin.shell: dnf module disable nginx -y; dnf module enable nginx:1.24 -y
+
+- name: Install Nginx
+  ansible.built.dnf:
     name: nginx
     state: latest
+
+- name: Copy Nginx Conf File
+  ansible.builtin.copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
 
 - name: Update Nginx File
   ansible.builtin.templates:
