@@ -1,0 +1,31 @@
+- name: Disable and Enable Nginx
+  ansible.builtin.dnf:
+    name: nginx
+    state: latest
+
+- name: Update Nginx File
+  ansible.builtin.templates:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
+- name: Remove App Folder
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
+
+- name: Add App Folder
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: directory
+
+- name: Download and Extract Content
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
+
+- name: Run Nginx Systemd
+  ansible.builtin.systemd_service:
+    name: nginx
+    state: latest
+    enabled: yes
