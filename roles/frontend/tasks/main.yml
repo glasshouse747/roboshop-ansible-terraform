@@ -27,5 +27,5 @@
 - name: Run Nginx Systemd
   ansible.builtin.systemd_service:
     name: nginx
-    state: latest
+    state: restarted
     enabled: yes
