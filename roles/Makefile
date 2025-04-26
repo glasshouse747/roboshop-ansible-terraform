@@ -1,6 +1,6 @@
 default:
 	git pull
-	ansible-playbook -i $(app_name).mydevops.shop, -e ansible_username=azuser -e ansible_password=Giveme123456 -e app_name=$(app_name) -e env=dev roboshop.yml
+	ansible-playbook -i $(app_name)-dev.mydevops.shop, -e ansible_username=azuser -e ansible_password=Giveme123456 -e app_name=$(app_name) -e env=dev roboshop.yml
 
 all:
 	git pull
