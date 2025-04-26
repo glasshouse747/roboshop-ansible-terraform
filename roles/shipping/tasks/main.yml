@@ -9,7 +9,7 @@
     state: latest
 
 - name: Load DB Schema
-  ansible.builtin.shell: mysql -h mysql-dev.mydevops.shop -uroot -pRoboShop@1 < /app/db/{ item }.sql
+  ansible.builtin.shell: mysql -h mysql-dev.mydevops.shop -uroot -pRoboShop@1 < /app/db/{{ item }}.sql
   loop:
     - schema
     - app-user
