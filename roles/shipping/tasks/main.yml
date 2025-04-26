@@ -1,7 +1,7 @@
 - name: Install Java
   ansible.builtin.include_role:
     name: common
-    tasks_From: java
+    tasks_from: java
 
 - name: Install MySQL
   ansible.builtin.dnf:
