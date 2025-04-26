@@ -8,6 +8,6 @@
     file: app_pre_setup.yml
 
 - name: Download App Dependencies
-  ansible.builtin.shell: mvn clean package; mv target{{ app_name }}-1.0.jar {{ app_name }}.jar
+  ansible.builtin.shell: mvn clean package; mv target/{{ app_name }}-1.0.jar {{ app_name }}.jar
   args:
     chdir: /app
