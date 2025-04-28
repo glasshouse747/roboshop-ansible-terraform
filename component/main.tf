@@ -10,7 +10,7 @@ resource "azurerm_subnet_network_security_group_association" "existing_nsg" {
   subnet_id                 = var.ip_configuration_subnet_id
   network_security_group_id = var.network_security_group_id
 
-  # count = 0
+  count = 0
 }
 
 resource "azurerm_public_ip" "public_ip" {
@@ -69,7 +69,7 @@ resource "azurerm_dns_a_record" "dns_record" {
   records             = [azurerm_network_interface.private_ip.private_ip_address]
 }
 
-resource "null_resource" "ansible_install_pull" {
+resource "null_resource" "install_ansible_pull" {
 
   connection {
     type     = "ssh"
