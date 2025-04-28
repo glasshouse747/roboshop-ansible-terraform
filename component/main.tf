@@ -6,12 +6,12 @@ terraform {
     }
   }
 }
-resource "azurerm_subnet_network_security_group_association" "existing_nsg" {
-  subnet_id                 = var.ip_configuration_subnet_id
-  network_security_group_id = var.network_security_group_id
 
-  count = 0
+resource "azurerm_network_interface_security_group_association" "existing_nsg" {
+  network_interface_id      = azurerm_network_interface.private_ip.id
+  network_security_group_id = var.network_security_group_id
 }
+
 
 resource "azurerm_public_ip" "public_ip" {
   name                = "${var.name}-ip"
