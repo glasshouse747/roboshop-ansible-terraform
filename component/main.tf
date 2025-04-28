@@ -23,7 +23,7 @@ resource "azurerm_network_interface" "private_ip" {
   }
 }
 
-resource "azurerm_virtual_machine" "frontend" {
+resource "azurerm_virtual_machine" "vm" {
   name                  = var.name
   location              = var.location
   resource_group_name   = var.rg_name
@@ -51,7 +51,7 @@ resource "azurerm_virtual_machine" "frontend" {
   }
 }
 
-resource "azurerm_dns_a_record" "frontend" {
+resource "azurerm_dns_a_record" "dns_record" {
   name                = "${var.name}-dev"
   zone_name           = var.zone_name
   resource_group_name = var.rg_name
