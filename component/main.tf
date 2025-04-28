@@ -1,8 +1,3 @@
-provider "azurerm" {
-  features {}
-  subscription_id = "eb986b09-9743-4aa1-b10f-53da04d8708c"
-}
-
 # NETWORK SECURITY GROUP
 
 data "azurerm_network_security_group" "existing_nsg" {
@@ -11,7 +6,7 @@ data "azurerm_network_security_group" "existing_nsg" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "existing_nsg" {
-  subnet_id = var.ip_configuration_subnet_id
+  subnet_id                 = var.ip_configuration_subnet_id
   network_security_group_id = data.azurerm_network_security_group.existing_nsg.id
 }
 
@@ -33,16 +28,16 @@ resource "azurerm_network_interface" "frontend" {
     name                          = "var.name"
     subnet_id                     = var.ip_configuration_subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.frontend.ip_address
+    public_ip_address_id          = azurerm_public_ip.frontend.ip_address
   }
 }
 
 resource "azurerm_virtual_machine" "vm" {
-  name                = "var.name"
-  location            = var.location
-  resource_group_name = var.rg_name
+  name                  = "var.name"
+  location              = var.location
+  resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.frontend.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -91,16 +86,16 @@ resource "azurerm_network_interface" "mongodb" {
     name                          = var.name
     subnet_id                     = var.ip_configuration_subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.mongodb.id
+    public_ip_address_id          = azurerm_public_ip.mongodb.id
   }
 }
 
 resource "azurerm_virtual_machine" "vm" {
-  name                = var.name
-  location            = var.location
-  resource_group_name = var.rg_name
+  name                  = var.name
+  location              = var.location
+  resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.mongodb.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -149,16 +144,16 @@ resource "azurerm_network_interface" "catalogue" {
     name                          = var.name
     subnet_id                     = var.ip_configuration_subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.catalogue.id
+    public_ip_address_id          = azurerm_public_ip.catalogue.id
   }
 }
 
 resource "azurerm_virtual_machine" "catalogue" {
-  name                = var.name
-  location            = var.location
-  resource_group_name = var.rg_name
+  name                  = var.name
+  location              = var.location
+  resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.catalogue.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -207,16 +202,16 @@ resource "azurerm_network_interface" "redis" {
     name                          = var.name
     subnet_id                     = var.ip_configuration_subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.redis.id
+    public_ip_address_id          = azurerm_public_ip.redis.id
   }
 }
 
 resource "azurerm_virtual_machine" "vm" {
-  name                = var.name
-  location            = var.location
-  resource_group_name = var.rg_name
+  name                  = var.name
+  location              = var.location
+  resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.redis.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -230,7 +225,7 @@ resource "azurerm_virtual_machine" "vm" {
     managed_disk_type = "Standard_LRS"
   }
   os_profile {
-    computer_name  = {var.name}
+    computer_name  = var.name
     admin_username = "azuser"
     admin_password = "Giveme123456"
   }
@@ -265,16 +260,16 @@ resource "azurerm_network_interface" "user" {
     name                          = var.name
     subnet_id                     = var.ip_configuration_subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.user.id
+    public_ip_address_id          = azurerm_public_ip.user.id
   }
 }
 
 resource "azurerm_virtual_machine" "vm" {
-  name                = var.name
-  location            = var.location
-  resource_group_name = var.rg_name
+  name                  = var.name
+  location              = var.location
+  resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.user.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -323,16 +318,16 @@ resource "azurerm_network_interface" "cart" {
     name                          = var.name
     subnet_id                     = var.ip_configuration_subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.cart.id
+    public_ip_address_id          = azurerm_public_ip.cart.id
   }
 }
 
 resource "azurerm_virtual_machine" "vm" {
-  name                = var.name
-  location            = var.location
-  resource_group_name = var.rg_name
+  name                  = var.name
+  location              = var.location
+  resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.cart.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -381,16 +376,16 @@ resource "azurerm_network_interface" "mysql" {
     name                          = var.name
     subnet_id                     = var.ip_configuration_subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.mysql.id
+    public_ip_address_id          = azurerm_public_ip.mysql.id
   }
 }
 
 resource "azurerm_virtual_machine" "vm" {
-  name                = var.name
-  location            = var.location
-  resource_group_name = var.rg_name
+  name                  = var.name
+  location              = var.location
+  resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.mysql.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -439,16 +434,16 @@ resource "azurerm_network_interface" "shipping" {
     name                          = var.name
     subnet_id                     = var.ip_configuration_subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.shipping.id
+    public_ip_address_id          = azurerm_public_ip.shipping.id
   }
 }
 
 resource "azurerm_virtual_machine" "vm" {
-  name                = "${var.name}"
-  location            = var.location
-  resource_group_name = var.rg_name
+  name                  = var.name
+  location              = var.location
+  resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.shipping.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -497,16 +492,16 @@ resource "azurerm_network_interface" "rabbitmq" {
     name                          = var.name
     subnet_id                     = var.ip_configuration_subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.rabbitmq.id
+    public_ip_address_id          = azurerm_public_ip.rabbitmq.id
   }
 }
 
 resource "azurerm_virtual_machine" "vm" {
-  name                = var.name
-  location            = var.location
-  resource_group_name = var.rg_name
+  name                  = var.name
+  location              = var.location
+  resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.rabbitmq.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -555,16 +550,16 @@ resource "azurerm_network_interface" "payment" {
     name                          = var.name
     subnet_id                     = var.ip_configuration_subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.payment.id
+    public_ip_address_id          = azurerm_public_ip.payment.id
   }
 }
 
 resource "azurerm_virtual_machine" "vm" {
-  name                = var.name
-  location            = var.location
-  resource_group_name = var.rg_name
+  name                  = var.name
+  location              = var.location
+  resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.payment.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -613,16 +608,16 @@ resource "azurerm_network_interface" "dispatch" {
     name                          = var.name
     subnet_id                     = var.ip_configuration_subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.dispatch.id
+    public_ip_address_id          = azurerm_public_ip.dispatch.id
   }
 }
 
 resource "azurerm_virtual_machine" "dispatch" {
-  name                = var.name
-  location            = var.location
-  resource_group_name = var.rg_name
+  name                  = var.name
+  location              = var.location
+  resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.dispatch.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 

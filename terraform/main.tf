@@ -11,7 +11,7 @@ data "azurerm_network_security_group" "existing_nsg" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "existing_nsg" {
-  subnet_id = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/virtualNetworks/test-network/subnets/default"
+  subnet_id                 = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/virtualNetworks/test-network/subnets/default"
   network_security_group_id = data.azurerm_network_security_group.existing_nsg.id
 }
 
@@ -33,16 +33,16 @@ resource "azurerm_network_interface" "frontend" {
     name                          = "frontend"
     subnet_id                     = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/virtualNetworks/test-network/subnets/default"
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.frontend.id
+    public_ip_address_id          = azurerm_public_ip.frontend.id
   }
 }
 
 resource "azurerm_virtual_machine" "frontend" {
-  name                = "frontend"
-  location            = "UK West"
-  resource_group_name = "my-first-rg"
+  name                  = "frontend"
+  location              = "UK West"
+  resource_group_name   = "my-first-rg"
   network_interface_ids = [azurerm_network_interface.frontend.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -91,16 +91,16 @@ resource "azurerm_network_interface" "mongodb" {
     name                          = "mongodb"
     subnet_id                     = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/virtualNetworks/test-network/subnets/default"
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.mongodb.id
+    public_ip_address_id          = azurerm_public_ip.mongodb.id
   }
 }
 
 resource "azurerm_virtual_machine" "mongodb" {
-  name                = "mongodb"
-  location            = "UK West"
-  resource_group_name = "my-first-rg"
+  name                  = "mongodb"
+  location              = "UK West"
+  resource_group_name   = "my-first-rg"
   network_interface_ids = [azurerm_network_interface.mongodb.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -149,16 +149,16 @@ resource "azurerm_network_interface" "catalogue" {
     name                          = "catalogue"
     subnet_id                     = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/virtualNetworks/test-network/subnets/default"
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.catalogue.id
+    public_ip_address_id          = azurerm_public_ip.catalogue.id
   }
 }
 
 resource "azurerm_virtual_machine" "catalogue" {
-  name                = "catalogue"
-  location            = "UK West"
-  resource_group_name = "my-first-rg"
+  name                  = "catalogue"
+  location              = "UK West"
+  resource_group_name   = "my-first-rg"
   network_interface_ids = [azurerm_network_interface.catalogue.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -207,16 +207,16 @@ resource "azurerm_network_interface" "redis" {
     name                          = "redis"
     subnet_id                     = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/virtualNetworks/test-network/subnets/default"
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.redis.id
+    public_ip_address_id          = azurerm_public_ip.redis.id
   }
 }
 
 resource "azurerm_virtual_machine" "redis" {
-  name                = "redis"
-  location            = "UK West"
-  resource_group_name = "my-first-rg"
+  name                  = "redis"
+  location              = "UK West"
+  resource_group_name   = "my-first-rg"
   network_interface_ids = [azurerm_network_interface.redis.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -265,16 +265,16 @@ resource "azurerm_network_interface" "user" {
     name                          = "user"
     subnet_id                     = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/virtualNetworks/test-network/subnets/default"
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.user.id
+    public_ip_address_id          = azurerm_public_ip.user.id
   }
 }
 
 resource "azurerm_virtual_machine" "user" {
-  name                = "user"
-  location            = "UK West"
-  resource_group_name = "my-first-rg"
+  name                  = "user"
+  location              = "UK West"
+  resource_group_name   = "my-first-rg"
   network_interface_ids = [azurerm_network_interface.user.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -323,16 +323,16 @@ resource "azurerm_network_interface" "cart" {
     name                          = "cart"
     subnet_id                     = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/virtualNetworks/test-network/subnets/default"
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.cart.id
+    public_ip_address_id          = azurerm_public_ip.cart.id
   }
 }
 
 resource "azurerm_virtual_machine" "cart" {
-  name                = "cart"
-  location            = "UK West"
-  resource_group_name = "my-first-rg"
+  name                  = "cart"
+  location              = "UK West"
+  resource_group_name   = "my-first-rg"
   network_interface_ids = [azurerm_network_interface.cart.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -381,16 +381,16 @@ resource "azurerm_network_interface" "mysql" {
     name                          = "mysql"
     subnet_id                     = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/virtualNetworks/test-network/subnets/default"
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.mysql.id
+    public_ip_address_id          = azurerm_public_ip.mysql.id
   }
 }
 
 resource "azurerm_virtual_machine" "mysql" {
-  name                = "mysql"
-  location            = "UK West"
-  resource_group_name = "my-first-rg"
+  name                  = "mysql"
+  location              = "UK West"
+  resource_group_name   = "my-first-rg"
   network_interface_ids = [azurerm_network_interface.mysql.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -439,16 +439,16 @@ resource "azurerm_network_interface" "shipping" {
     name                          = "shipping"
     subnet_id                     = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/virtualNetworks/test-network/subnets/default"
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.shipping.id
+    public_ip_address_id          = azurerm_public_ip.shipping.id
   }
 }
 
 resource "azurerm_virtual_machine" "shipping" {
-  name                = "shipping"
-  location            = "UK West"
-  resource_group_name = "my-first-rg"
+  name                  = "shipping"
+  location              = "UK West"
+  resource_group_name   = "my-first-rg"
   network_interface_ids = [azurerm_network_interface.shipping.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -497,16 +497,16 @@ resource "azurerm_network_interface" "rabbitmq" {
     name                          = "rabbitmq"
     subnet_id                     = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/virtualNetworks/test-network/subnets/default"
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.rabbitmq.id
+    public_ip_address_id          = azurerm_public_ip.rabbitmq.id
   }
 }
 
 resource "azurerm_virtual_machine" "rabbitmq" {
-  name                = "rabbitmq"
-  location            = "UK West"
-  resource_group_name = "my-first-rg"
+  name                  = "rabbitmq"
+  location              = "UK West"
+  resource_group_name   = "my-first-rg"
   network_interface_ids = [azurerm_network_interface.rabbitmq.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -555,16 +555,16 @@ resource "azurerm_network_interface" "payment" {
     name                          = "payment"
     subnet_id                     = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/virtualNetworks/test-network/subnets/default"
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.payment.id
+    public_ip_address_id          = azurerm_public_ip.payment.id
   }
 }
 
 resource "azurerm_virtual_machine" "payment" {
-  name                = "payment"
-  location            = "UK West"
-  resource_group_name = "my-first-rg"
+  name                  = "payment"
+  location              = "UK West"
+  resource_group_name   = "my-first-rg"
   network_interface_ids = [azurerm_network_interface.payment.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
@@ -613,16 +613,16 @@ resource "azurerm_network_interface" "dispatch" {
     name                          = "dispatch"
     subnet_id                     = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/virtualNetworks/test-network/subnets/default"
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.dispatch.id
+    public_ip_address_id          = azurerm_public_ip.dispatch.id
   }
 }
 
 resource "azurerm_virtual_machine" "dispatch" {
-  name                = "dispatch"
-  location            = "UK West"
-  resource_group_name = "my-first-rg"
+  name                  = "dispatch"
+  location              = "UK West"
+  resource_group_name   = "my-first-rg"
   network_interface_ids = [azurerm_network_interface.dispatch.id]
-  vm_size             = "Standard_B2s"
+  vm_size               = "Standard_B2s"
 
   delete_os_disk_on_termination = true
 
