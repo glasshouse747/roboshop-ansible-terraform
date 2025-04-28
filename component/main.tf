@@ -1,13 +1,6 @@
-# NETWORK SECURITY GROUP
-
-data "azurerm_network_security_group" "existing_nsg" {
-  name                = "my-first-nsg"
-  resource_group_name = var.rg_name
-}
-
 resource "azurerm_subnet_network_security_group_association" "existing_nsg" {
   subnet_id                 = var.ip_configuration_subnet_id
-  network_security_group_id = data.azurerm_network_security_group.existing_nsg.id
+  network_security_group_id = var.network_security_group_id
 }
 
 # FRONTEND
