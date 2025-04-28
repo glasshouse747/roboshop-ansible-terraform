@@ -11,12 +11,12 @@ resource "azurerm_public_ip" "public_ip" {
 }
 
 resource "azurerm_network_interface" "private_ip" {
-  name                = "var.name-nic"
+  name                = "${var.name}-nic"
   location            = var.location
   resource_group_name = var.rg_name
 
   ip_configuration {
-    name                          = "var.name"
+    name                          = var.name
     subnet_id                     = var.ip_configuration_subnet_id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.public_ip.id
@@ -24,7 +24,7 @@ resource "azurerm_network_interface" "private_ip" {
 }
 
 resource "azurerm_virtual_machine" "frontend" {
-  name                  = "var.name"
+  name                  = var.name
   location              = var.location
   resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.private_ip.id]
@@ -36,13 +36,13 @@ resource "azurerm_virtual_machine" "frontend" {
     id = var.storage_image_reference_id
   }
   storage_os_disk {
-    name              = "var.name-disk"
+    name              = "${var.name}-disk"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
   }
   os_profile {
-    computer_name  = "var.name"
+    computer_name  = var.name
     admin_username = "azuser"
     admin_password = "Giveme123456"
   }
@@ -52,7 +52,7 @@ resource "azurerm_virtual_machine" "frontend" {
 }
 
 resource "azurerm_dns_a_record" "frontend" {
-  name                = "var.name-dev"
+  name                = "${var.name}-dev"
   zone_name           = var.zone_name
   resource_group_name = var.rg_name
   ttl                 = 3
