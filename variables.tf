@@ -17,3 +17,7 @@ variable "storage_image_reference_id" {
 variable "zone_name" {
   default = "mydevops.shop"
 }
+
+variable "network_security_group" {
+  default = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/networkSecurityGroups/my-first-nsg"
+}
