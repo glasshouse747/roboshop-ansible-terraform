@@ -10,12 +10,7 @@ resource "azurerm_subnet_network_security_group_association" "existing_nsg" {
   subnet_id                 = var.ip_configuration_subnet_id
   network_security_group_id = var.network_security_group_id
 
-  lifecycle {
-    ignore_changes = [
-      network_security_group_id,
-      subnet_id
-    ]
-  }
+  count = 0
 }
 
 resource "azurerm_public_ip" "public_ip" {
