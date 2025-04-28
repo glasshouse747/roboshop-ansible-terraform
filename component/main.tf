@@ -83,5 +83,4 @@ resource "null_resource" "ansible" {
       "ansible-pull -i localhost, -U https://github.com/glasshouse747/roboshop-ansible-terraform.git roboshop.yml -e app_name=${var.name} -e env=dev"
     ]
   }
-
 }
