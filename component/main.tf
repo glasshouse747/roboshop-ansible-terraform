@@ -32,7 +32,7 @@ resource "azurerm_network_interface" "frontend" {
   }
 }
 
-resource "azurerm_virtual_machine" "vm" {
+resource "azurerm_virtual_machine" "frontend" {
   name                  = "var.name"
   location              = var.location
   resource_group_name   = var.rg_name
@@ -90,7 +90,7 @@ resource "azurerm_network_interface" "mongodb" {
   }
 }
 
-resource "azurerm_virtual_machine" "vm" {
+resource "azurerm_virtual_machine" "mongodb" {
   name                  = var.name
   location              = var.location
   resource_group_name   = var.rg_name
@@ -206,7 +206,7 @@ resource "azurerm_network_interface" "redis" {
   }
 }
 
-resource "azurerm_virtual_machine" "vm" {
+resource "azurerm_virtual_machine" "redis" {
   name                  = var.name
   location              = var.location
   resource_group_name   = var.rg_name
@@ -264,7 +264,7 @@ resource "azurerm_network_interface" "user" {
   }
 }
 
-resource "azurerm_virtual_machine" "vm" {
+resource "azurerm_virtual_machine" "user" {
   name                  = var.name
   location              = var.location
   resource_group_name   = var.rg_name
@@ -322,7 +322,7 @@ resource "azurerm_network_interface" "cart" {
   }
 }
 
-resource "azurerm_virtual_machine" "vm" {
+resource "azurerm_virtual_machine" "cart" {
   name                  = var.name
   location              = var.location
   resource_group_name   = var.rg_name
@@ -380,7 +380,7 @@ resource "azurerm_network_interface" "mysql" {
   }
 }
 
-resource "azurerm_virtual_machine" "vm" {
+resource "azurerm_virtual_machine" "mysql" {
   name                  = var.name
   location              = var.location
   resource_group_name   = var.rg_name
@@ -438,7 +438,7 @@ resource "azurerm_network_interface" "shipping" {
   }
 }
 
-resource "azurerm_virtual_machine" "vm" {
+resource "azurerm_virtual_machine" "shipping" {
   name                  = var.name
   location              = var.location
   resource_group_name   = var.rg_name
@@ -496,7 +496,7 @@ resource "azurerm_network_interface" "rabbitmq" {
   }
 }
 
-resource "azurerm_virtual_machine" "vm" {
+resource "azurerm_virtual_machine" "rabbitmq" {
   name                  = var.name
   location              = var.location
   resource_group_name   = var.rg_name
@@ -554,7 +554,7 @@ resource "azurerm_network_interface" "payment" {
   }
 }
 
-resource "azurerm_virtual_machine" "vm" {
+resource "azurerm_virtual_machine" "payment" {
   name                  = var.name
   location              = var.location
   resource_group_name   = var.rg_name
