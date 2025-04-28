@@ -69,7 +69,11 @@ resource "azurerm_dns_a_record" "dns_record" {
   records             = [azurerm_network_interface.private_ip.private_ip_address]
 }
 
-resource "null_resource" "install_ansible_pull" {
+resource "null_resource" "ansible" {
+
+  triggers = {
+    always_run = timestamp()
+  }
 
   connection {
     type     = "ssh"
