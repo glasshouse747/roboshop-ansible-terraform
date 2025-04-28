@@ -79,7 +79,7 @@ resource "null_resource" "ansible" {
     type     = "ssh"
     user     = "azuser"
     password = "Giveme123456"
-    host     =  azurerm_public_ip.public_ip.ip_address
+    host     =  "${var.name}.${var.zone_name}"
   }
 
   provisioner "remote-exec" {
