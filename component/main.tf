@@ -56,5 +56,10 @@ resource "azurerm_dns_a_record" "dns_record" {
   zone_name           = var.zone_name
   resource_group_name = var.rg_name
   ttl                 = 3
-  records             = [azurerm_network_interface.private_ip.id]
+  records             = [azurerm_network_interface.private_ip.private_ip_address]
 }
+
+# provisioner "local-exec" {
+#   command    = "echo The server's IP address is ${self.private_ip}"
+#   on_failure = continue
+# }
