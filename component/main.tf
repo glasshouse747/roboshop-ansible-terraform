@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    null = {
+      source  = "hashicorp/null"
+      version = "3.2.3"
+    }
+  }
+}
 resource "azurerm_subnet_network_security_group_association" "existing_nsg" {
   subnet_id                 = var.ip_configuration_subnet_id
   network_security_group_id = var.network_security_group_id
@@ -59,7 +67,20 @@ resource "azurerm_dns_a_record" "dns_record" {
   records             = [azurerm_network_interface.private_ip.private_ip_address]
 }
 
-# provisioner "local-exec" {
-#   command    = "echo The server's IP address is ${self.private_ip}"
-#   on_failure = continue
-# }
+resource "null_resource" "ansible" {
+
+  connection {
+    type     = "ssh"
+    user     = "azuser"
+    password = "Giveme123456"
+    host     =  azurerm_network_interface.private_ip.private_ip_address
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo dnf install python3.12 python3.12-pip -y",
+      "sudo pip3.12 install ansible",
+    ]
+  }
+
+}
