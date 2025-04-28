@@ -71,6 +71,9 @@ resource "azurerm_dns_a_record" "dns_record" {
 
 resource "null_resource" "ansible" {
 
+  depends_on = [azurerm_network_interface_security_group_association.existing_nsg, azurerm_public_ip.public_ip,
+    azurerm_network_interface.private_ip, azurerm_virtual_machine.vm, azurerm_dns_a_record.dns_record ]
+
   triggers = {
     always_run = timestamp()
   }
