@@ -21,3 +21,23 @@ variable "zone_name" {
 variable "network_security_group_id" {
   default = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/networkSecurityGroups/my-first-nsg"
 }
+
+variable "databases" {
+  default = {
+    mongodb = {}
+    rabbitmq = {}
+    mysql = {}
+    redis = {}
+  }
+}
+
+variable "applications" {
+  default = {
+    catalogue= {}
+    user = {}
+    cart = {}
+    payment = {}
+    shipping = {}
+    frontend = {}
+  }
+}
