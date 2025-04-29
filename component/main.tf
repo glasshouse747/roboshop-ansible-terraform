@@ -7,12 +7,6 @@ terraform {
   }
 }
 
-resource "azurerm_network_interface_security_group_association" "existing_nsg" {
-  network_interface_id      = azurerm_network_interface.private_ip.id
-  network_security_group_id = var.network_security_group_id
-}
-
-
 resource "azurerm_public_ip" "public_ip" {
   name                = "${var.name}-ip"
   resource_group_name = var.rg_name
@@ -31,6 +25,19 @@ resource "azurerm_network_interface" "private_ip" {
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.public_ip.id
   }
+}
+
+resource "azurerm_network_interface_security_group_association" "existing_nsg" {
+  network_interface_id      = azurerm_network_interface.private_ip.id
+  network_security_group_id = var.network_security_group_id
+}
+
+resource "azurerm_dns_a_record" "dns_record" {
+  name                = "${var.name}-dev"
+  zone_name           = var.zone_name
+  resource_group_name = var.rg_name
+  ttl                 = 3
+  records             = [azurerm_network_interface.private_ip.private_ip_address]
 }
 
 resource "azurerm_virtual_machine" "vm" {
@@ -61,18 +68,9 @@ resource "azurerm_virtual_machine" "vm" {
   }
 }
 
-resource "azurerm_dns_a_record" "dns_record" {
-  name                = "${var.name}-dev"
-  zone_name           = var.zone_name
-  resource_group_name = var.rg_name
-  ttl                 = 3
-  records             = [azurerm_network_interface.private_ip.private_ip_address]
-}
-
 resource "null_resource" "ansible" {
 
-  depends_on = [azurerm_network_interface_security_group_association.existing_nsg, azurerm_public_ip.public_ip,
-    azurerm_network_interface.private_ip, azurerm_virtual_machine.vm, azurerm_dns_a_record.dns_record ]
+  depends_on = [azurerm_virtual_machine.vm]
 
   triggers = {
     always_run = timestamp()
@@ -82,7 +80,7 @@ resource "null_resource" "ansible" {
     type     = "ssh"
     user     = "azuser"
     password = "Giveme123456"
-    host     =  azurerm_public_ip.public_ip.ip_address
+    host     =  azurerm_network_interface.private_ip.private_ip_address
   }
 
   provisioner "remote-exec" {
