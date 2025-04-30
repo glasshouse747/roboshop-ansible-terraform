@@ -12,7 +12,7 @@ resource "azurerm_storage_account" "tfstate" {
 }
 
 resource "azurerm_storage_container" "roboshop_tf_state" {
-  name                  = "robsoshop-state-files"
+  name                  = "roboshop-state-files"
   storage_account_id    = azurerm_storage_account.tfstate.id
   container_access_type = "private"
 }
