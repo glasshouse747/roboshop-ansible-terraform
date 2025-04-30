@@ -22,8 +22,8 @@
 # }
 
 module "resource-group" {
-  source = "./tf-state-modules/resource-group"
-  rg_name     = var.rg_name
-  rg_location = var.rg_location
+  source = "./modules/resource-group"
 
+  location = var.rg_location
+  name     = var.rg_name
 }
