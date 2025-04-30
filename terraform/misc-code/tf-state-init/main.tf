@@ -4,7 +4,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_storage_account" "roboshop_tf_state" {
-  name                     = "mydevopshop_tf_state"
+  name                     = "mydevopshop"
   resource_group_name      = "my-first-rg"
   location                 = "UK West"
   account_tier             = "Standard"
