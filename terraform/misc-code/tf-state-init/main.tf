@@ -9,8 +9,4 @@ resource "azurerm_storage_account" "roboshop_tf_state" {
   location                 = "UK West"
   account_tier             = "Standard"
   account_replication_type = "GRS"
-
-  tags = {
-    environment = "staging"
-  }
 }
