@@ -21,7 +21,9 @@
 #   network_security_group_id  = var.network_security_group_id
 # }
 
-module "resource_group" {
+module "resource-group" {
   source = "./modules/resource-group"
+  rg_name     = var.rg_name
+  rg_location = var.rg_location
 
 }
