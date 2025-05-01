@@ -6,6 +6,7 @@ variable "zone_name" {}
 variable "network_security_group_id" {}
 variable "databases" {}
 variable "applications" {}
+variable "dns_record_rg_name" {}
 
 
 
