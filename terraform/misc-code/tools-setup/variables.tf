@@ -6,8 +6,10 @@ variable "tools" {
   }
 }
 
-
-
-variable "rg_name" {}
-variable "rg_location" {}
+variable "rg_name" {
+  default = "my-first-project"
+}
+variable "rg_location" {
+  default = "UK West"
+}
 
