@@ -1,22 +1,13 @@
-terraform {
-  required_providers {
-    null = {
-      source  = "hashicorp/null"
-      version = "3.2.3"
-    }
-  }
-}
-
 resource "azurerm_public_ip" "public_ip" {
   name                = "${var.name}-ip"
   resource_group_name = var.rg_name
-  location            = data.azurerm_resource_group.rg.location
+  location            = var.rg_location
   allocation_method   = "Static"
 }
 
 resource "azurerm_network_interface" "private_ip" {
   name                = "${var.name}-nic"
-  location            = data.azurerm_resource_group.rg.location
+  location            = var.rg_location
   resource_group_name = var.rg_name
 
   ip_configuration {
@@ -42,7 +33,7 @@ resource "azurerm_dns_a_record" "dns_record" {
 
 resource "azurerm_virtual_machine" "vm" {
   name                  = var.name
-  location              = data.azurerm_resource_group.rg.location
+  location              = var.rg_location
   resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.private_ip.id]
   vm_size               = "Standard_B2s"
