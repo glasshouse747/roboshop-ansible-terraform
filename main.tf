@@ -22,7 +22,7 @@
 # }
 
 module "resource-group" {
-  source = "./modules/resource-group"
+  source   = "./modules/resource-group"
   location = var.rg_location
   name     = var.rg_name
 }
