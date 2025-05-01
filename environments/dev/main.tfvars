@@ -6,43 +6,43 @@ zone_name                  = "mydevops.shop"
 network_security_group_id  = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Network/networkSecurityGroups/my-first-nsg"
 databases = {
   mongodb  = {
-    rgname = "ukwest-dev"
+    rgname = "ukwest"
   }
   rabbitmq = {
-    rgname = "ukwest-dev"
+    rgname = "ukwest"
   }
   mysql    = {
-    rgname = "ukwest-dev"
+    rgname = "ukwest"
   }
   redis    = {
-    rgname = "ukwest-dev"
+    rgname = "ukwest"
   }
 }
 applications = {
   catalogue = {
-    rgname = "ukwest-dev"
+    rgname = "ukwest"
   }
   user      = {
-    rgname = "ukwest-dev"
+    rgname = "ukwest"
   }
   cart      = {
-    rgname = "ukwest-dev"
+    rgname = "ukwest"
   }
   payment   = {
-    rgname = "ukwest-dev"
+    rgname = "ukwest"
   }
   shipping  = {
-    rgname = "ukwest-dev"
+    rgname = "ukwest"
   }
   frontend  = {
-    rgname = "ukwest-dev"
+    rgname = "ukwest"
   }
   dispatch  = {
-    rgname = "ukwest-dev"
+    rgname = "ukwest"
   }
 }
 rg_name = {
   ukwest = {
-    rg_location = "UK West"
+    location = "UK West"
   }
 }
