@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    null = {
+      source  = "hashicorp/null"
+      version = "3.2.3"
+    }
+  }
+}
 resource "azurerm_public_ip" "publicip" {
   name                = var.name
   location            = var.rg_location
@@ -40,13 +48,23 @@ resource "azurerm_linux_virtual_machine" "vm" {
     storage_account_type = "Standard_LRS"
   }
 
-  source_image_id       = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Compute/images/local-devops-practice"
+  source_image_id = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Compute/images/local-devops-practice"
 
 
   # Spot Details
   priority        = "Spot"
   max_bid_price   = -1
   eviction_policy = "Deallocate"
+}
+
+
+resource "azurerm_dns_a_record" "private_dns_record" {
+  depends_on          = [azurerm_linux_virtual_machine.vm]
+  name                = "${var.name}-int"
+  zone_name           = "mydevops.shop"
+  resource_group_name = var.rg_name
+  ttl                 = 3
+  records             = [azurerm_network_interface.privateip.private_ip_address]
 }
 
 resource "azurerm_dns_a_record" "public_dns_record" {
@@ -58,11 +76,3 @@ resource "azurerm_dns_a_record" "public_dns_record" {
   records             = [azurerm_public_ip.publicip.ip_address]
 }
 
-
-resource "azurerm_dns_a_record" "private_dns_record" {
-  name                = "${var.name}-int"
-  zone_name           = "mydevops.shop"
-  resource_group_name = var.rg_name
-  ttl                 = 3
-  records             = [azurerm_network_interface.privateip.private_ip_address]
-}
