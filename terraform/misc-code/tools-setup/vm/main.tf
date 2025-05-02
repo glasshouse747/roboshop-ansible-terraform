@@ -51,14 +51,12 @@ resource "azurerm_linux_virtual_machine" "vm" {
   priority              = "Spot"
   max_bid_price         = -1
   eviction_policy       = "Deallocate"
+  source_image_id       = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Compute/images/local-devops-practice"
 
-  storage_image_reference {
-    id = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Compute/images/local-devops-practice"
+  os_disk {
+    name                 = "${var.name}-disk"
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
   }
-  storage_os_disk {
-    name              = "${var.name}-disk"
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
-  }
+
 }
