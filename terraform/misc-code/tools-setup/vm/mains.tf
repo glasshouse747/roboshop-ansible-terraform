@@ -60,7 +60,7 @@ resource "azurerm_dns_a_record" "public_dns_record" {
 
 
 resource "azurerm_dns_a_record" "private_dns_record" {
-  name                = "${var.name}-int"
+  name                = var.name
   zone_name           = "mydevops.shop"
   resource_group_name = var.rg_name
   ttl                 = 3
