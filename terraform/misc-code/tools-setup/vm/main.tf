@@ -2,7 +2,8 @@ resource "azurerm_public_ip" "public_ip" {
   name                = "${var.name}-ip"
   resource_group_name = var.rg_name
   location            = var.rg_location
-  allocation_method   = "Static"
+  allocation_method   = "Dynamic"
+  sku                 = "Basic"
 }
 
 resource "azurerm_network_interface" "private_ip" {
