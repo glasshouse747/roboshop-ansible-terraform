@@ -1,4 +1,5 @@
 resource "azurerm_public_ip" "public_ip" {
+  depends_on          = [azurerm_linux_virtual_machine.vm]
   name                = "${var.name}-ip"
   resource_group_name = var.rg_name
   location            = var.rg_location
@@ -7,6 +8,7 @@ resource "azurerm_public_ip" "public_ip" {
 }
 
 resource "azurerm_network_interface" "private_ip" {
+  depends_on          = [azurerm_linux_virtual_machine.vm]
   name                = var.name
   location            = var.rg_location
   resource_group_name = var.rg_name
@@ -25,6 +27,7 @@ resource "azurerm_network_interface_security_group_association" "existing_nsg" {
 }
 
 resource "azurerm_dns_a_record" "public_dns_record" {
+  depends_on          = [azurerm_linux_virtual_machine.vm]
   name                = var.name
   zone_name           = "mydevops.shop"
   resource_group_name = var.rg_name
@@ -33,6 +36,7 @@ resource "azurerm_dns_a_record" "public_dns_record" {
 }
 
 resource "azurerm_dns_a_record" "private_dns_record" {
+  depends_on          = [azurerm_linux_virtual_machine.vm]
   name                = var.name
   zone_name           = "mydevops.shop"
   resource_group_name = var.rg_name
