@@ -4,7 +4,6 @@ resource "azurerm_public_ip" "publicip" {
   resource_group_name = var.rg_name
   allocation_method   = "Dynamic"
   sku                 = "Basic"
-  ip_version          = "IPv4"
 }
 
 resource "azurerm_network_interface" "privateip" {
