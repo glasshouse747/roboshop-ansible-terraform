@@ -56,5 +56,5 @@ resource "azurerm_dns_a_record" "private_ip_dns" {
   zone_name           = "mydevops.shop"
   resource_group_name = var.rg_name
   ttl                 = 3
-  records             = [azurerm_network_interface.privateip.private_ip_address]
+  records             = [azurerm_public_ip.publicip.ip_address]
 }
