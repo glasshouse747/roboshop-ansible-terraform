@@ -8,5 +8,5 @@
     name: vault
     state: installed
 
-- name: Copy vault config
-  ansible.builtin.copy:
+#- name: Copy vault config
+#  ansible.builtin.copy:
