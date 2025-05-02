@@ -39,14 +39,18 @@ resource "azurerm_dns_a_record" "private_dns_record" {
   records = [azurerm_network_interface.private_ip.private_ip_address]
 }
 
-resource "azurerm_virtual_machine" "vm" {
-  name                = var.name
-  location            = var.rg_location
-  resource_group_name = var.rg_name
+resource "azurerm_linux_virtual_machine" "vm" {
+  name                  = var.name
+  location              = var.rg_location
+  resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.private_ip.id]
-  vm_size             = var.vm_size
-
-  delete_os_disk_on_termination = true
+  size                  = var.vm_size
+  admin_username        = "azuser"
+  admin_password        = "Giveme123456"
+  disable_password_authentication = false
+  priority              = "Spot"
+  max_bid_price         = -1
+  eviction_policy       = "Deallocate"
 
   storage_image_reference {
     id = "/subscriptions/eb986b09-9743-4aa1-b10f-53da04d8708c/resourceGroups/my-first-rg/providers/Microsoft.Compute/images/local-devops-practice"
@@ -56,13 +60,5 @@ resource "azurerm_virtual_machine" "vm" {
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
-  }
-  os_profile {
-    computer_name  = var.name
-    admin_username = "azuser"
-    admin_password = "Giveme123456"
-  }
-  os_profile_linux_config {
-    disable_password_authentication = false
   }
 }
