@@ -30,7 +30,6 @@ resource "azurerm_public_ip" "public_ip" {
 }
 
 resource "azurerm_network_interface" "private_ip" {
-  depends_on          = [azurerm_linux_virtual_machine.vm]
   name                = var.name
   location            = var.rg_location
   resource_group_name = var.rg_name
