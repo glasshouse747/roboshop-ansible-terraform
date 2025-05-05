@@ -20,6 +20,18 @@ variable "values" {
                 foo = "bar"
         }
       }
+
+    frontend = {
+      secret = "roboshop-dev"
+      value = {
+        catalogue_url = "http://catalogue-dev.mydevops.shop:8080/"
+        user_url = "http://user-dev.mydevops.shop:8080/"
+        cart_url = "http://cart-dev.mydevops.shop:8080/"
+        shipping_url = "http://shipping-dev.mydevops.shop:8080/"
+        payment_url = "http://payment-dev.mydevops.shop:8080/"
+      }
+    }
+
     ssh = {
       secret =  "robsohop-infra"
       value = {
