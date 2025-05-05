@@ -2,9 +2,9 @@
 Description = Cart Service
 [Service]
 User=roboshop
-Environment=REDIS_HOST={{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }/data/{ app_name }}:REDIS_HOST token={{ token }} url=http://vault-int.mydevops.shop:8200') }}
-Environment=CATALOGUE_HOST={{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }/data/{{ app_name }}:CATALOGUE_HOST token={{ token }} url=http://vault-int.mydevops.shop:8200') }}
-Environment=CATALOGUE_PORT={{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }/data/{{ app_name }}:CATALOGUE_PORT token={{ token }} url=http://vault-int.mydevops.shop:8200') }}
+Environment=REDIS_HOST={{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{ app_name }}:REDIS_HOST token={{ token }} url=http://vault-int.mydevops.shop:8200') }}
+Environment=CATALOGUE_HOST={{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:CATALOGUE_HOST token={{ token }} url=http://vault-int.mydevops.shop:8200') }}
+Environment=CATALOGUE_PORT={{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:CATALOGUE_PORT token={{ token }} url=http://vault-int.mydevops.shop:8200') }}
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier=cart
 
