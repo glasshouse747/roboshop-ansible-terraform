@@ -16,8 +16,9 @@ variable "values" {
     cart ={
       secret = "roboshop-dev"
       value  = {
-                zip = "zap",
-                foo = "bar"
+        REDIS_HOST="redis-dev.mydevops.shop"
+        CATALOGUE_HOST="catalogue-dev.mydevops.shop"
+        CATALOGUE_PORT=8080
         }
       }
 
