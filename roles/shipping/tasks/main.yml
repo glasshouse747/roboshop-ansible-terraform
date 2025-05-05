@@ -9,7 +9,7 @@
     state: latest
 
 - name: Load DB Schema
-  ansible.builtin.shell: mysql -h mysql-dev.mydevops.shop -u{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }/data/{ app_name }}:username token={{ token }} url=http://vault-int.mydevops.shop:8200') }} -p{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }/data/{ app_name }}:password token={{ token }} url=http://vault-int.mydevops.shop:8200') }} < /app/db/{{ item }}.sql
+  ansible.builtin.shell: mysql -h mysql-dev.mydevops.shop -u"{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }/data/{ app_name }}:username token={{ token }} url=http://vault-int.mydevops.shop:8200') }}" -p"{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }/data/{ app_name }}:password token={{ token }} url=http://vault-int.mydevops.shop:8200') }}" < /app/db/{{ item }}.sql
   loop:
     - schema
     - app-user
