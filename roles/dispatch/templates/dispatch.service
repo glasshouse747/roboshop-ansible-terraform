@@ -2,9 +2,9 @@
 Description = Dispatch Service
 [Service]
 User=roboshop
-Environment=AMQP_HOST=rabbitmq-dev.mydevops.shop
-Environment=AMQP_USER=roboshop
-Environment=AMQP_PASS=roboshop123
+Environment=AMQP_HOST={{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:AMQP_HOST token={{ token }} url=http://vault-int.mydevops.shop:8200') }}
+Environment=AMQP_USER={{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:AMQP_USER token={{ token }} url=http://vault-int.mydevops.shop:8200') }}
+Environment=AMQP_PASS={{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:AMQP_PASS token={{ token }} url=http://vault-int.mydevops.shop:8200') }}
 ExecStart=/app/dispatch
 SyslogIdentifier=dispatch
 

@@ -34,9 +34,9 @@ variable "values" {
     dispatch = {
       secret = "roboshop-dev"
       value  = {
-        MONGO     = "true"
-        MONGO_URL = "mongodb://mongodb-dev.mydevops.shop:27017/catalogue"
-
+        AMQP_HOST="rabbitmq-dev.mydevops.shop"
+        AMQP_USER="roboshop"
+        AMQP_PASS="roboshop123"
       }
     }
 
