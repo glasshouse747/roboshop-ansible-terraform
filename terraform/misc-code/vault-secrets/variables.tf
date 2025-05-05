@@ -18,14 +18,14 @@ variable "values" {
       value  = {
         REDIS_HOST      = "redis-dev.mydevops.shop"
         CATALOGUE_HOST  = "catalogue-dev.mydevops.shop"
-        CATALOGUE_PORT  = "8080"
+        CATALOGUE_PORT  = 8080
         }
       }
 
     catalogue = {
       secret = "roboshop-dev"
       value  = {
-        MONGO     = true
+        MONGO     = "true"
         MONGO_URL = "mongodb://mongodb-dev.mydevops.shop:27017/catalogue"
 
       }
@@ -34,7 +34,7 @@ variable "values" {
     dispatch = {
       secret = "roboshop-dev"
       value  = {
-        MONGO     = true
+        MONGO     = "true"
         MONGO_URL = "mongodb://mongodb-dev.mydevops.shop:27017/catalogue"
 
       }
@@ -54,7 +54,7 @@ variable "values" {
     mongodb = {
       secret = "roboshop-dev"
       value  = {
-        MONGO     = true
+        MONGO     = "true"
         MONGO_URL = "mongodb://mongodb-dev.mydevops.shop:27017/catalogue"
 
       }
@@ -74,9 +74,9 @@ variable "values" {
       secret = "roboshop-dev"
       value  = {
         CART_HOST   = "cart-dev.mydevops.shop"
-        CART_PORT   = "8080"
+        CART_PORT   = 8080
         USER_HOST   = "user-dev.mydevops.shop"
-        USER_PORT   = "8080"
+        USER_PORT   = 8080
         AMQP_HOST   = "rabbitmq-dev.mydevops.shop"
         AMQP_USER   = "roboshop"
         AMQP_PASS   = "roboshop123"
@@ -107,7 +107,7 @@ variable "values" {
     user = {
       secret = "roboshop-dev"
       value  = {
-        MONGO       =true
+        MONGO       ="true"
         REDIS_URL   ="redis://redis-dev.mydevops.shop:6379"
         MONGO_URL   ="mongodb://mongodb-dev.mydevops.shop:27017/users"
       }
