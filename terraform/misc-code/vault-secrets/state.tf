@@ -1,6 +1,6 @@
 provider "vault" {
   address = "http://vault.mydevops.shop:8200"
-  token = var.token
+  # token = var.token
 }
 
 terraform {
