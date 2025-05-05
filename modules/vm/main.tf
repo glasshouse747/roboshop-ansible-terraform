@@ -60,7 +60,12 @@ resource "azurerm_virtual_machine" "vm" {
 }
 
 resource "null_resource" "ansible" {
+
   depends_on = [azurerm_virtual_machine.vm]
+  triggers = {
+    always_run = timestamp()
+  }
+
   connection {
     type     = "ssh"
     user     = data.vault_generic_secret.ssh.data["username"]
@@ -75,4 +80,10 @@ resource "null_resource" "ansible" {
       "ansible-pull -i localhost, -U https://github.com/glasshouse747/roboshop-ansible-terraform.git roboshop.yml -e app_name=${var.name} -e env=dev -e token=${var.token}"
     ]
   }
+
 }
+
+
+
+
+
