@@ -21,7 +21,7 @@ variable "values" {
         }
       }
     ssh = {
-      secret =  "roboshop-infra"
+      secret =  "robsohop-infra"
       value = {
         username = "azuser"
         password = "Giveme123456"
