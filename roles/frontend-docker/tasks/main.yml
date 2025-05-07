@@ -1,0 +1,24 @@
+- name: Install & Start Docker
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: docker
+
+- name: Run Frontend Container
+  community.docker.docker_container:
+    name: frontend
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
+    state: started
+    restart: true
+    ports:
+      - "80:80"
+    env:
+      CATALOGUE_HOST: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:CATALOGUE_HOST token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      CATALOGUE_PORT: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:CATALOGUE_PORT token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      USER_HOST: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:USER_HOST token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      USER_PORT: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:USER_PORT token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      CART_HOST: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:CART_HOST token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      CART_PORT: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:CART_PORT token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      SHIPPING_HOST: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:SHIPPING_HOST token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      SHIPPING_PORT: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:SHIPPING_PORT token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      PAYMENT_HOST: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:PAYMENT_HOST token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      PAYMENT_PORT: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:PAYMENT_PORT token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
