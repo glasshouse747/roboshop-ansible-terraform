@@ -3,15 +3,31 @@
     name: common
     tasks_from: docker
 
-- name: Run User Container
+- name: Run Shipping Container
   community.docker.docker_container:
-    name: user
-    image: public.ecr.aws/w8x4g9h7/roboshop-v3/user
+    name: shipping
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/shipping
     state: started
     restart: true
     ports:
       - "8080:8080"
     env:
-      MONGO: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:MONGO token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
-      MONGO_URL: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:MONGO_URL token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
-      REDIS_URL: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:REDIS_URL token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      CART_ENDPOINT: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:CART_ENDPOINT token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      DB_HOST: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:DB_HOST token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+
+- name: Run Shipping-Scheme for Container
+  loop:
+    - app-user
+    - schema
+    - master-data
+  community.docker.docker_container:
+    name: shipping-{{ item }}
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/shipping
+    state: started
+    env:
+      DB_TYPE: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:DB_TYPE token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      APP_GIT_URL: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:APP_GIT_URL token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      DB_HOST: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:DB_HOST token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      DB_USER: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:DB_USER token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      DB_PASS: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:DB_PASS token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      SCHEMA_FILE: db/{{ item }}.sql
