@@ -6,4 +6,4 @@ apply:
 destroy:
 	git pull
 	terraform init
-	terraform apply -auto-approve -var token=$(token)
+	terraform destroy -auto-approve -var token=$(token)
