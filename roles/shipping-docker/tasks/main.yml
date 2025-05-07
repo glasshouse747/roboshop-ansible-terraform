@@ -1,0 +1,17 @@
+- name: Install & Start Docker
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: docker
+
+- name: Run User Container
+  community.docker.docker_container:
+    name: user
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/user
+    state: started
+    restart: true
+    ports:
+      - "8080:8080"
+    env:
+      MONGO: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:MONGO token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      MONGO_URL: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:MONGO_URL token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
+      REDIS_URL: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:REDIS_URL token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
