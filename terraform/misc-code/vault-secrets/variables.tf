@@ -1,4 +1,4 @@
-# variable "token" {}
+variable "token" {}
 
 variable "secrets" {
   default = {
