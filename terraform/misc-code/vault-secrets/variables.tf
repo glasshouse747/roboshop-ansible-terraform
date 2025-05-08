@@ -55,7 +55,7 @@ variable "values" {
         CATALOGUE_PORT  = 8080
         USER_HOST       = "user-dev.mydevops.shop:8080"
         USER_PORT       = 8080
-        CART_HOST       = "http://cart-dev.mydevops.shop:8080"
+        CART_HOST       = "cart-dev.mydevops.shop:8080"
         CART_PORT       = 8080
         SHIPPING_HOST   = "shipping-dev.mydevops.shop:8080"
         SHIPPING_PORT   = 8080
@@ -123,9 +123,9 @@ variable "values" {
     user = {
       secret = "roboshop-dev"
       value  = {
-        MONGO       ="true"
-        REDIS_URL   ="redis://redis-dev.mydevops.shop:6379"
-        MONGO_URL   ="mongodb://mongodb-dev.mydevops.shop:27017/users"
+        MONGO       = "true"
+        REDIS_URL   = "redis://redis-dev.mydevops.shop:6379"
+        MONGO_URL   = "mongodb://mongodb-dev.mydevops.shop:27017/users"
       }
     }
 
