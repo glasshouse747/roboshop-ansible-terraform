@@ -21,7 +21,7 @@
     - master-data
   community.docker.docker_container:
     name: shipping-{{ item }}
-    image: public.ecr.aws/w8x4g9h7/roboshop-v3/shipping
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
     state: started
     env:
       DB_TYPE: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:DB_TYPE token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
