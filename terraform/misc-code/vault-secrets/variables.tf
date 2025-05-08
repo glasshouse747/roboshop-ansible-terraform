@@ -61,6 +61,8 @@ variable "values" {
         SHIPPING_PORT   = 8080
         PAYMENT_HOST    = "payment-dev.mydevops.shop:8080"
         PAYMENT_PORT    = 8080
+
+
       }
     }
 
