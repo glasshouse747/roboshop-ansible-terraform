@@ -8,7 +8,6 @@
     name: payment
     image: public.ecr.aws/w8x4g9h7/roboshop-v3/payment
     state: started
-    restart: true
     ports:
       - "8080:8080"
     env:
