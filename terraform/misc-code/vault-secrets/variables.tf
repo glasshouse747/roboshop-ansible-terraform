@@ -51,6 +51,16 @@ variable "values" {
         cart_url        = "http://cart-dev.mydevops.shop:8080/"
         shipping_url    = "http://shipping-dev.mydevops.shop:8080/"
         payment_url     = "http://payment-dev.mydevops.shop:8080/"
+        CATALOGUE_HOST  = "http://catalogue-dev.mydevops.shop:8080/"
+        CATALOGUE_PORT  = 8080
+        USER_HOST       = "http://user-dev.mydevops.shop:8080/"
+        USER_PORT       = 8080
+        CART_HOST       = "http://cart-dev.mydevops.shop:8080/"
+        CART_PORT       = 8080
+        SHIPPING_HOST   = "http://shipping-dev.mydevops.shop:8080/"
+        SHIPPING_PORT   = 8080
+        PAYMENT_HOST    = "http://payment-dev.mydevops.shop:8080/"
+        PAYMENT_PORT    = 8080
       }
     }
 
