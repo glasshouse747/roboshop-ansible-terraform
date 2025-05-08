@@ -12,5 +12,4 @@
   ansible.builtin.systemd_service:
     name: docker
     state: started
-    restarted: yes
     enabled: yes
