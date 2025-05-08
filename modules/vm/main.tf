@@ -74,6 +74,7 @@ resource "null_resource" "ansible" {
   }
 
   provisioner "remote-exec" {
+    depends_on = [null_reso?urce.ansible]
     inline = [
       "sudo dnf install python3.12 python3.12-pip -y",
       "sudo pip3.12 install ansible hvac",
