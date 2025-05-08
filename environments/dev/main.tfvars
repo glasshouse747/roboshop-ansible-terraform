@@ -37,9 +37,9 @@ applications = {
   frontend = {
     rgname = "ukwest"
   }
-  dispatch = {
-    rgname = "ukwest"
-  }
+  # dispatch = {
+  #   rgname = "ukwest"
+  # }
 }
 rg_name = {
   ukwest = {
