@@ -116,7 +116,7 @@ variable "values" {
         DB_USER        = "root"
         DB_PASS        = "RoboShop@1"
         DB_TYPE        = "mysql"
-        APP_GIT_URL    = "https://github.com/roboshop-devops-project-v3/catalogue"
+        APP_GIT_URL    = "https://github.com/roboshop-devops-project-v3/shipping"
       }
     }
 
