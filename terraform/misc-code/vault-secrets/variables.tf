@@ -25,9 +25,12 @@ variable "values" {
     catalogue = {
       secret = "roboshop-dev"
       value  = {
-        MONGO     = "true"
-        MONGO_URL = "mongodb://mongodb-dev.mydevops.shop:27017/catalogue"
-
+        MONGO       = "true"
+        MONGO_URL   = "mongodb://mongodb-dev.mydevops.shop:27017/catalogue"
+        DB_TYPE     = "mongo"
+        APP_GIT_URL = "https://github.com/roboshop-devops-project-v3/catalogue"
+        DB_HOST     = "mongodb://mongodb-dev.mydevops.shop"
+        SCHEMA_FILE = "db/master-data.js"
       }
     }
 
@@ -96,11 +99,14 @@ variable "values" {
     shipping = {
       secret = "roboshop-dev"
       value  = {
-       CART_ENDPOINT  = "cart-dev.mydevops.shop:8080"
-       DB_HOST        = "mysql-dev.mydevops.shop"
-       username       = "root"
-       password       = "RoboShop@1"
-
+        CART_ENDPOINT  = "cart-dev.mydevops.shop:8080"
+        DB_HOST        = "mysql-dev.mydevops.shop"
+        username       = "root"
+        password       = "RoboShop@1"
+        DB_USER        = "root"
+        DB_PASS        = "RoboShop@1"
+        DB_TYPE        = "mysql"
+        APP_GIT_URL    = "https://github.com/roboshop-devops-project-v3/catalogue"
       }
     }
 
