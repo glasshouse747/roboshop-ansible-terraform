@@ -8,7 +8,6 @@
     name: catalogue
     image: public.ecr.aws/w8x4g9h7/roboshop-v3/catalogue
     state: started
-    restart: true
     ports:
       - "8080:8080"
     env:
@@ -20,7 +19,6 @@
     name: catalogue-schema
     image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
     state: started
-    restart: true
     env:
       DB_TYPE: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:DB_TYPE token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
       APP_GIT_URL: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:APP_GIT_URL token={{ token }} url=http://vault-int.mydevops.shop:8200') }}"
