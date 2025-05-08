@@ -34,14 +34,14 @@ variable "values" {
       }
     }
 
-    dispatch = {
-      secret = "roboshop-dev"
-      value  = {
-        AMQP_HOST="rabbitmq-dev.mydevops.shop"
-        AMQP_USER="roboshop"
-        AMQP_PASS="roboshop123"
-      }
-    }
+    # dispatch = {
+    #   secret = "roboshop-dev"
+    #   value  = {
+    #     AMQP_HOST="rabbitmq-dev.mydevops.shop"
+    #     AMQP_USER="roboshop"
+    #     AMQP_PASS="roboshop123"
+    #   }
+    # }
 
     frontend = {
       secret = "roboshop-dev"
