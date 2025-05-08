@@ -51,7 +51,6 @@ variable "values" {
         cart_url        = "http://cart-dev.mydevops.shop:8080/"
         shipping_url    = "http://shipping-dev.mydevops.shop:8080/"
         payment_url     = "http://payment-dev.mydevops.shop:8080/"
-        CATALOGUE_HOST  = "http://catalogue-dev.mydevops.shop:8080/"
         CATALOGUE_PORT  = 8080
         USER_HOST       = "user-dev.mydevops.shop:8080"
         USER_PORT       = 8080
